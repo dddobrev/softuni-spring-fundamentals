@@ -22,7 +22,7 @@ public class ModelEntity extends BaseEntity {
 
   private int startYear;
 
-  private int endYar;
+  private int endYear;
 
   @ManyToOne
   private BrandEntity brand;
@@ -63,12 +63,12 @@ public class ModelEntity extends BaseEntity {
     return this;
   }
 
-  public int getEndYar() {
-    return endYar;
+  public int getEndYear() {
+    return endYear;
   }
 
-  public ModelEntity setEndYar(int endYar) {
-    this.endYar = endYar;
+  public ModelEntity setEndYear(int endYar) {
+    this.endYear = endYar;
     return this;
   }
 
@@ -88,7 +88,7 @@ public class ModelEntity extends BaseEntity {
         ", category=" + category +
         ", imageUrl='" + imageUrl + '\'' +
         ", startYear=" + startYear +
-        ", endYar=" + endYar +
+        ", endYar=" + endYear +
         ", brand=" + brand +
         ", id=" + id +
         ", created=" + created +

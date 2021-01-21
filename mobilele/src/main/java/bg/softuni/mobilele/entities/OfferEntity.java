@@ -3,12 +3,12 @@ package bg.softuni.mobilele.entities;
 
 import bg.softuni.mobilele.entities.enums.EngineEnum;
 import bg.softuni.mobilele.entities.enums.TransmissionEnum;
+import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import org.springframework.ui.Model;
 
 @Entity
 @Table(name="offers")
@@ -18,8 +18,9 @@ public class OfferEntity extends BaseEntity {
   private EngineEnum engine;
   private String imageUrl;
   private int mileage;
-  private int price;
+  private BigDecimal price;
   private int year;
+  private String description;
   @Enumerated(EnumType.STRING)
   private TransmissionEnum transmission;
   @ManyToOne
@@ -34,6 +35,15 @@ public class OfferEntity extends BaseEntity {
 
   public OfferEntity setEngine(EngineEnum engine) {
     this.engine = engine;
+    return this;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public OfferEntity setDescription(String description) {
+    this.description = description;
     return this;
   }
 
@@ -55,11 +65,11 @@ public class OfferEntity extends BaseEntity {
     return this;
   }
 
-  public int getPrice() {
+  public BigDecimal getPrice() {
     return price;
   }
 
-  public OfferEntity setPrice(int price) {
+  public OfferEntity setPrice(BigDecimal price) {
     this.price = price;
     return this;
   }
