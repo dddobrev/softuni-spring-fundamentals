@@ -1,8 +1,8 @@
-package bg.softuni.mobilele.entities;
+package bg.softuni.mobilele.model.entities;
 
 
-import bg.softuni.mobilele.entities.enums.EngineEnum;
-import bg.softuni.mobilele.entities.enums.TransmissionEnum;
+import bg.softuni.mobilele.model.entities.enums.EngineEnum;
+import bg.softuni.mobilele.model.entities.enums.TransmissionEnum;
 import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

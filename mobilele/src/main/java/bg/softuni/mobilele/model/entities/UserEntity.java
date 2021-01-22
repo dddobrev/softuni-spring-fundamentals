@@ -1,8 +1,7 @@
-package bg.softuni.mobilele.entities;
+package bg.softuni.mobilele.model.entities;
 
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
