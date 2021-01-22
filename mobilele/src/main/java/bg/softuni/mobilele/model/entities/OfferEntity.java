@@ -26,8 +26,8 @@ public class OfferEntity extends BaseEntity {
   @ManyToOne
   private ModelEntity model;
 
-  @ManyToOne
-  private UserEntity user;
+//  @ManyToOne
+//  private UserEntity user;
 
   public EngineEnum getEngine() {
     return engine;
@@ -102,14 +102,15 @@ public class OfferEntity extends BaseEntity {
     return this;
   }
 
-  public UserEntity getUser() {
-    return user;
-  }
-
-  public OfferEntity setUser(UserEntity user) {
-    this.user = user;
-    return this;
-  }
+  //TODO: uncomment when users come into the game.
+//  public UserEntity getUser() {
+//    return user;
+//  }
+//
+//  public OfferEntity setUser(UserEntity user) {
+//    this.user = user;
+//    return this;
+//  }
 
   @Override
   public String toString() {
@@ -121,7 +122,7 @@ public class OfferEntity extends BaseEntity {
         ", year=" + year +
         ", transmission=" + transmission +
         ", model=" + model +
-        ", user=" + user +
+        //", user=" + user +
         ", id=" + id +
         ", created=" + created +
         ", updated=" + updated +

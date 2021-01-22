@@ -3,12 +3,20 @@ package bg.softuni.mobilele;
 import bg.softuni.mobilele.model.entities.BaseEntity;
 import bg.softuni.mobilele.model.entities.BrandEntity;
 import bg.softuni.mobilele.model.entities.ModelEntity;
+import bg.softuni.mobilele.model.entities.OfferEntity;
+import bg.softuni.mobilele.model.entities.enums.EngineEnum;
 import bg.softuni.mobilele.model.entities.enums.ModelCategoryEnum;
+import bg.softuni.mobilele.model.entities.enums.TransmissionEnum;
 import bg.softuni.mobilele.repository.BrandRepository;
 import bg.softuni.mobilele.repository.ModelRepository;
+import bg.softuni.mobilele.repository.OfferRepository;
 import com.fasterxml.jackson.databind.ser.Serializers.Base;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
@@ -18,11 +26,14 @@ public class DBInit implements CommandLineRunner {
 
   private final ModelRepository modelRepository;
   private final BrandRepository brandRepository;
+  private final OfferRepository offerRepository;
 
   public DBInit(ModelRepository modelRepository,
-      BrandRepository brandRepository) {
+      BrandRepository brandRepository,
+      OfferRepository offerRepository) {
     this.modelRepository = modelRepository;
     this.brandRepository = brandRepository;
+    this.offerRepository = offerRepository;
   }
 
   @Override
@@ -37,10 +48,28 @@ public class DBInit implements CommandLineRunner {
 
     brandRepository.saveAll(List.of(fordBrand, hondaBrand));
 
-    initFiesta(fordBrand);
+    ModelEntity fiestaModel = initFiesta(fordBrand);
     initEscort(fordBrand);
     initNC750S(hondaBrand);
+    createFiestaOffer(fiestaModel);
+  }
 
+  private void createFiestaOffer(ModelEntity modelEntity) {
+    OfferEntity fiestaOffer = new OfferEntity();
+
+    fiestaOffer.
+        setEngine(EngineEnum.GASOLINE).
+        setImageUrl("https://media.autoexpress.co.uk/image/private/s--7btEt2wi--/v1562244788/autoexpress/2017/07/dsc_1328-1.jpg").
+        setMileage(40000).
+        setPrice(BigDecimal.valueOf(10000)).
+        setYear(2019).
+        setDescription("Karana e ot nemska baba. Zimata v garaj.").
+        setTransmission(TransmissionEnum.MANUAL).
+        setModel(modelEntity);
+
+    setCurrentTimestamps(fiestaOffer);
+
+    offerRepository.save(fiestaOffer);
   }
 
   private ModelEntity initNC750S(BrandEntity hondaBrand){
