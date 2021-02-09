@@ -8,17 +8,19 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 public class OfferServiceModel {
 
   @NotNull
   private EngineEnum engine;
-  @NotNull
+  @NotEmpty
   private String imageUrl;
   @NotNull
-  @Positive
+  @PositiveOrZero
   private Integer mileage;
+  @NotNull
   @DecimalMin("100")
   private BigDecimal price;
   @YearInPastOrPresent(minYear = 1930)
