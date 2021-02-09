@@ -12,13 +12,14 @@ class HelloRestController {
 
   companion object {
     private val LOGGER = LoggerFactory.getLogger(HelloRestController::class.java)
+    private var counter = 0;
   }
 
-  @CrossOrigin(origins = ["*"])
+  //@CrossOrigin(origins = ["*"])
   @GetMapping("/hello-rest")
-  fun getHello(@CookieValue(required = false) name: String?) : HelloMessage {
-    LOGGER.info("Serving HELLO REST!")
-    return HelloMessage("Hello, world!", "Softuni!")
+  fun getHello() : HelloMessage {
+    LOGGER.info("Serving HELLO REST, No. {}!", counter++)
+    return HelloMessage(message = "Hello, world!", from = "Softuni!")
   }
 
 }
