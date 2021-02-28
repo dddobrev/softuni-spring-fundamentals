@@ -8,7 +8,7 @@ public interface OfferService {
 
   List<OfferSummaryViewModel> getAllOffers();
 
-  long save(OfferServiceModel model);
+  long save(OfferServiceModel model, String userName);
 
   void delete(long id);
 }

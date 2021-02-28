@@ -6,7 +6,9 @@ import bg.softuni.mobilele.model.service.OfferServiceModel;
 import bg.softuni.mobilele.model.service.UserLoginServiceModel;
 import bg.softuni.mobilele.service.BrandService;
 import bg.softuni.mobilele.service.OfferService;
+import java.security.Principal;
 import javax.validation.Valid;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,7 +50,8 @@ public class OffersController {
   @PostMapping("/add")
   public String addOffer(@Valid @ModelAttribute OfferServiceModel offerModel,
       BindingResult bindingResult,
-      RedirectAttributes redirectAttributes) {
+      RedirectAttributes redirectAttributes,
+      @AuthenticationPrincipal Principal principal) {
 
     if (bindingResult.hasErrors()) {
       redirectAttributes.addFlashAttribute("offerModel", offerModel);
@@ -56,7 +59,7 @@ public class OffersController {
       return "redirect:/offers/add";
     }
 
-    long newOfferId = offerService.save(offerModel);
+    long newOfferId = offerService.save(offerModel, principal.getName());
 
     return "redirect:/offers/offer/" + newOfferId;
   }
